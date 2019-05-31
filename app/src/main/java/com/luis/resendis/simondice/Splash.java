@@ -3,31 +3,53 @@ package com.luis.resendis.simondice;
 
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
-import java.util.Timer;
-import java.util.TimerTask;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 
 
 public class Splash extends AppCompatActivity {
 
     private final long SPLASH = 3000;
+    private LinearLayout screensplash,getname;
+    private EditText name;
+    private Button  toContinue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        screensplash      = findViewById(R.id.splash);
+        getname     = findViewById(R.id.getname);
+        name        = findViewById(R.id.Edname);
+        toContinue  = findViewById(R.id.btncontinue);
 
-        TimerTask task = new TimerTask() {
+     new Handler().postDelayed(new Runnable() {
+         @Override
+         public void run() {
+             screensplash.setVisibility(View.GONE);
+             getname.setVisibility(View.VISIBLE);
+         }
+     },SPLASH);
+
+        toContinue.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void run() {
-                Intent intent = new Intent(Splash.this , MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        };
+            public void onClick(View v) {
+                name.getText().toString();
+                if (name.getText().toString().equals(""))
+                {
+                    name.setError("Por favor ingresa tu nombre");
+                }if (!name.getText().toString().equals(""))
+                {
+                    Intent intent = new Intent(Splash.this , MainActivity.class);
+                    startActivity(intent);
+                    finish();
 
-        Timer timer = new Timer();
-        timer.schedule(task,SPLASH);
+                }
+            }
+        });
     }
 }

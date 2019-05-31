@@ -37,7 +37,7 @@ public class MainActivity extends Activity implements ColorFragment.PushListener
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.main);
 
-        indicator = (TextView)findViewById(R.id.indicator);
+        indicator = findViewById(R.id.indicator);
         Score = findViewById(R.id.Score);
 
         colors = new ColorFragment[4];

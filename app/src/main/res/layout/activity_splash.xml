@@ -8,34 +8,81 @@
     android:gravity="center"
     tools:context=".Splash">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:gravity="left"
-        android:layout_height="wrap_content"
-        android:text="@string/matter"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:textColor="@color/black"/>
+    <LinearLayout
+       android:id="@+id/splash"
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:gravity="left"
+            android:layout_height="wrap_content"
+            android:text="@string/matter"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="@color/black"/>
 
-    <ImageView
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/icofes"/>
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icofes"/>
 
-    <TextView
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/Alumnname"
-        android:textSize="20sp"
-        android:textColor="@color/black"/>
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Alumnname"
+            android:textSize="20sp"
+            android:textColor="@color/black"/>
 
-    <TextView
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/Countnomber"
-        android:textSize="22sp"
-        android:textColor="@color/black"/>
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Countnomber"
+            android:textSize="22sp"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+    <LinearLayout
+
+        android:id="@+id/getname"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <EditText
+            android:id="@+id/Edname"
+            android:gravity="center"
+            android:background="@drawable/formtext"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:hint="Introduce tu nombre"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+        <LinearLayout
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btncontinue"
+                android:background="@drawable/bottomcontinue"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="Continuar"
+                android:textColor="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+    </LinearLayout>
+
 </LinearLayout>

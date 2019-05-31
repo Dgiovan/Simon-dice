@@ -10,4 +10,7 @@
     <color name="bottomleft">#861911</color>
     <color name="background">#C6B7A5</color>
     <color name="black">#000000</color>
+    <color name="blue">#0238A2</color>
+    <color name="orange">#FF5722</color>
+    <color name="white">#ffffff</color>
 </resources>
