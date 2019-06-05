@@ -2,22 +2,22 @@ package com.luis.resendis.simondice;
 
 import com.luis.resendis.simondice.R;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 
 public class MainActivity extends Activity implements ColorFragment.PushListener {
 
-    private ColorFragment red;
-    private ColorFragment green;
-    private ColorFragment blue;
-    private ColorFragment yellow;
 
     private int sequenceIndex = 0;
     private ArrayList<ColorFragment> sequence;
@@ -26,10 +26,14 @@ public class MainActivity extends Activity implements ColorFragment.PushListener
 
     private TextView indicator;
     private TextView Score;
+    private TextView usertv;
 
     private boolean challenging;
     private int challengeIndex = 0;
     private int pointScore=0;
+
+    private MediaPlayer one,two,thre,four;
+    AlertDialog alertDialog;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,8 +41,19 @@ public class MainActivity extends Activity implements ColorFragment.PushListener
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.main);
 
+        SharedPreferences preferences = getSharedPreferences("name", Context.MODE_PRIVATE);
+        String user= preferences.getString("nameUser","userError");
+
+
         indicator = findViewById(R.id.indicator);
         Score = findViewById(R.id.Score);
+        usertv =  findViewById(R.id.Tvuser);
+        usertv.setText(user);
+
+        one = MediaPlayer.create(this,R.raw.sound1);
+        two = MediaPlayer.create(this,R.raw.sound2);
+        thre = MediaPlayer.create(this,R.raw.sound3);
+        four = MediaPlayer.create(this,R.raw.sound4);
 
         colors = new ColorFragment[4];
         colors[0] = (ColorFragment)findViewById(R.id.topleft);
@@ -76,6 +91,7 @@ public class MainActivity extends Activity implements ColorFragment.PushListener
                         Log.i("app","sequence " + sequenceIndex);
                         sequenceIndex++;
                         if(sequenceIndex < sequence.size()) {
+
                             doSequence();
                         } else {
                             Log.i("app","chanlenge ?");
@@ -90,7 +106,6 @@ public class MainActivity extends Activity implements ColorFragment.PushListener
     }
 
     private void incSequence() {
-//        indicator.setText("0");
         Score.setText(String.valueOf(pointScore));
         sequence.add(colors[(int) (Math.random() * colors.length)]);
         doSequence();
@@ -124,14 +139,41 @@ public class MainActivity extends Activity implements ColorFragment.PushListener
                 challenging = false;
                 challengeIndex = 0;
                 indicator.setText("\u2718");// HEAVY BALLOT X
-
-                (new Handler()).postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        initSequence();
-                    }
-                }, 3000);
+                showAlertDialog();
             }
         }
     }
+
+    private void showAlertDialog() {
+        if (alertDialog == null) {
+            alertDialog = new AlertDialog.Builder(this ).create();
+            alertDialog.setCancelable(false);
+            alertDialog.setTitle("Fallaste");
+            alertDialog.setMessage("¿Deseas intentarlo de nuevo?");
+            alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Si",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            pointScore = 0;
+                            initSequence();
+                            dialog.dismiss();
+                            alertDialog = null;
+                        }
+                    });
+            alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "No",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            Intent intent = new Intent(MainActivity.this,Splash.class);
+                            startActivity(intent);
+                            finish();
+                            dialog.dismiss();
+                            alertDialog = null;
+                        }
+                    });
+            alertDialog.show();
+        }
+    }
+
+
 }

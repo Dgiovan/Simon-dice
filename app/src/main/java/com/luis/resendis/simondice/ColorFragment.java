@@ -6,7 +6,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.GradientDrawable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -14,7 +13,7 @@ import android.view.View.OnTouchListener;
 
 public class ColorFragment extends View implements OnTouchListener {
 	private GradientDrawable drawable;
-	
+
 	public interface PushListener {
 		public void onPush(View v);
 	}

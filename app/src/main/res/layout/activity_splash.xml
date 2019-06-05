@@ -58,6 +58,8 @@
         <EditText
             android:id="@+id/Edname"
             android:gravity="center"
+            android:singleLine="true"
+            android:imeOptions="actionGo"
             android:background="@drawable/formtext"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"

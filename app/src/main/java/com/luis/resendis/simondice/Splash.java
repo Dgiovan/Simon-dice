@@ -2,7 +2,9 @@ package com.luis.resendis.simondice;
 
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,7 +12,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-
 
 public class Splash extends AppCompatActivity {
 
@@ -44,6 +45,13 @@ public class Splash extends AppCompatActivity {
                     name.setError("Por favor ingresa tu nombre");
                 }if (!name.getText().toString().equals(""))
                 {
+
+                    SharedPreferences preferences = getSharedPreferences("name", Context.MODE_PRIVATE);
+                    String usertext= name.getText().toString();
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("nameUser",usertext);
+                    editor.commit();
+
                     Intent intent = new Intent(Splash.this , MainActivity.class);
                     startActivity(intent);
                     finish();

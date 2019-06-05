@@ -16,15 +16,29 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/Tvuser"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:text="User"/>
+            <TextView
+                android:layout_weight="1"
+                android:gravity="right"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/Score"
                 android:textColor="@color/black"
                 android:textStyle="bold"/>
             <TextView
+                android:layout_weight="1"
                 android:id="@+id/Score"
+
                 android:layout_marginLeft="5dp"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="0000"
                 android:fontFamily="serif-monospace"
@@ -34,7 +48,7 @@
 
 
         <FrameLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_weight="1"
